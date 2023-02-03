@@ -29,7 +29,7 @@ console.log(setUser)
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn Reactv
+          Start project
         </a>
       </header>
     </div>
