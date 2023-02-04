@@ -13,6 +13,27 @@ namespace GoodDoc_BackEnd.Data
         {
         }
 
-        public DbSet<Test> Test { get; set; }
+        public DbSet<User> Users { get; set; }
+
+        public DbSet<Patient> Patients { get; set; }
+
+        public DbSet<Admin> Admins { get; set; }
+
+        public DbSet<Doctor> Doctors { get; set; }
+
+        public DbSet<Dossier> Dossier { get; set; }
+
+        public DbSet<Hospital> Hospitals { get; set; }
+
+        public DbSet<Question> Questions { get; set; }
+
+        public DbSet<Specialty> Specialties { get; set; }
+
+        public DbSet<AppointmentSlot> Appointments { get; set; }
+
+        public DbSet<AppointmentPatient> AppointmentPatients { get; set; }
+
+        public DbSet<Symptom> Symptoms { get; set; }
+
     }
 }

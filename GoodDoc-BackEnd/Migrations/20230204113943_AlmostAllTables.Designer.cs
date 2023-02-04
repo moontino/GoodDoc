@@ -4,6 +4,7 @@ using GoodDoc_BackEnd.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GoodDocBackEnd.Migrations
 {
     [DbContext(typeof(GoodDocDbContext))]
-    partial class GoodDocDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230204113943_AlmostAllTables")]
+    partial class AlmostAllTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,54 +46,6 @@ namespace GoodDocBackEnd.Migrations
                     b.ToTable("Admins");
                 });
 
-            modelBuilder.Entity("GoodDoc_BackEnd.Models.AppointmentPatient", b =>
-                {
-                    b.Property<string>("AppointmentSlotId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("PatientId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("AppointmentSlotId", "PatientId");
-
-                    b.HasIndex("PatientId");
-
-                    b.ToTable("AppointmentPatients");
-                });
-
-            modelBuilder.Entity("GoodDoc_BackEnd.Models.AppointmentSlot", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("End")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("PatientId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("Start")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SymptomId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PatientId");
-
-                    b.HasIndex("SymptomId");
-
-                    b.ToTable("Appointments");
-                });
-
             modelBuilder.Entity("GoodDoc_BackEnd.Models.Doctor", b =>
                 {
                     b.Property<string>("Id")
@@ -99,10 +54,6 @@ namespace GoodDocBackEnd.Migrations
                     b.Property<string>("Adress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AppointmentSlotId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("Approved")
                         .HasColumnType("bit");
@@ -137,8 +88,6 @@ namespace GoodDocBackEnd.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AppointmentSlotId");
 
                     b.HasIndex("HospitalId");
 
@@ -278,23 +227,6 @@ namespace GoodDocBackEnd.Migrations
                     b.ToTable("Specialties");
                 });
 
-            modelBuilder.Entity("GoodDoc_BackEnd.Models.Symptom", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Symptoms");
-                });
-
             modelBuilder.Entity("GoodDoc_BackEnd.Models.User", b =>
                 {
                     b.Property<string>("Id")
@@ -337,50 +269,8 @@ namespace GoodDocBackEnd.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("GoodDoc_BackEnd.Models.AppointmentPatient", b =>
-                {
-                    b.HasOne("GoodDoc_BackEnd.Models.AppointmentSlot", "AppointmentSlot")
-                        .WithMany("AppointmentPatient")
-                        .HasForeignKey("AppointmentSlotId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("GoodDoc_BackEnd.Models.Patient", "Patient")
-                        .WithMany("AppointmentPatient")
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AppointmentSlot");
-
-                    b.Navigation("Patient");
-                });
-
-            modelBuilder.Entity("GoodDoc_BackEnd.Models.AppointmentSlot", b =>
-                {
-                    b.HasOne("GoodDoc_BackEnd.Models.Patient", "Patient")
-                        .WithMany()
-                        .HasForeignKey("PatientId");
-
-                    b.HasOne("GoodDoc_BackEnd.Models.Symptom", "Symptom")
-                        .WithMany()
-                        .HasForeignKey("SymptomId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Patient");
-
-                    b.Navigation("Symptom");
-                });
-
             modelBuilder.Entity("GoodDoc_BackEnd.Models.Doctor", b =>
                 {
-                    b.HasOne("GoodDoc_BackEnd.Models.AppointmentSlot", "AppointmentSlot")
-                        .WithMany()
-                        .HasForeignKey("AppointmentSlotId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("GoodDoc_BackEnd.Models.Hospital", "Hospital")
                         .WithMany()
                         .HasForeignKey("HospitalId");
@@ -400,8 +290,6 @@ namespace GoodDocBackEnd.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("AppointmentSlot");
 
                     b.Navigation("Hospital");
 
@@ -427,16 +315,6 @@ namespace GoodDocBackEnd.Migrations
                     b.Navigation("File");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("GoodDoc_BackEnd.Models.AppointmentSlot", b =>
-                {
-                    b.Navigation("AppointmentPatient");
-                });
-
-            modelBuilder.Entity("GoodDoc_BackEnd.Models.Patient", b =>
-                {
-                    b.Navigation("AppointmentPatient");
                 });
 #pragma warning restore 612, 618
         }
