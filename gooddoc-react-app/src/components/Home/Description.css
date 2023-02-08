@@ -1,0 +1,90 @@
+:root {
+  --background-color: #f1f5f9;
+  --text-color: #393736;
+}
+
+.desc-section {
+  background-color: var(--background-color);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  color: var(--text-color);
+}
+
+.desc-section .desc-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.desc-section .desc-img-doctor {
+  max-width: 300px;
+  max-height: 450px;
+  object-fit: contain;
+  margin: auto;
+  display: block;
+  padding-top: 2rem;
+}
+
+.desc-section .desc-small-title {
+  margin-top: 2rem;
+  font-weight: 400;
+}
+
+.desc-section .desc-title {
+  margin-right: 3rem;
+  margin-left: 3rem;
+  font-size: 1.5rem;
+}
+
+.desc-section .desc-ul-list {
+  margin-bottom: 2rem;
+  line-height: 1.3rem;
+}
+
+.desc-section .desc-ul-list .desc-li-element {
+  list-style: square;
+  text-align: center;
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+@media screen and (min-width: 800px) {
+  .desc-section .desc-container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .desc-section .desc-img-doctor {
+    max-width: 500px;
+    max-height: 450px;
+    object-fit: contain;
+    margin: auto;
+    display: block;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    margin-left: 3rem;
+  }
+
+  .desc-section .desc-box {
+    margin: 2rem;
+  }
+
+  .desc-section .desc-small-title {
+    margin-top: 0;
+    margin-bottom: 2rem;
+  }
+
+  .desc-section .desc-title {
+    font-size: 2.2rem;
+  }
+
+  .desc-section .desc-ul-list {
+    font-size: 1.1rem;
+    line-height: 2rem;
+  }
+
+  .desc-section .desc-ul-list .desc-li-element {
+    text-align: left;
+    margin-left: 4rem;
+    margin-right: 3rem;
+  }
+}

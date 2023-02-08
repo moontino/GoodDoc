@@ -1,0 +1,95 @@
+:root {
+  --backgroud-color: rgb(219, 127, 94);
+}
+
+.search-section {
+  position: relative;
+  left: 0;
+  right: 0;
+  margin-top: 150px;
+  display: grid;
+  width: 100%;
+}
+
+.search-section .container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.search-section .container .select {
+  /* При спадането на менюто има проблеми с дължината*/
+  /* Placeholder*/
+  max-width: 300px;
+  margin: 0.4rem;
+  padding: 0.7rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  color: #282828;
+}
+
+.search-section .search-doc {
+  color: #515151;
+  font-size: 1.9rem;
+  font-weight: bold;
+  text-align: left;
+  margin-left: 2rem;
+  margin-bottom: 0.6rem;
+  margin-top: -2rem;
+}
+
+.search-section .btn-search {
+  background-color: var(--backgroud-color);
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  justify-self: left;
+  margin-top: 1.5rem;
+  margin-left: 2rem;
+  padding: 0.6rem 0.2rem;
+  border: none;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+  line-height: 1.2rem;
+  letter-spacing: 0.1rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+}
+.search-section .btn-search:hover {
+  color: black;
+}
+.search-section .doctor-img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  object-position: right 75%;
+  margin-top: 3rem;
+}
+
+@media screen and (min-width: 800px) {
+  .search-section .container {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .search-section .container .select {
+    max-width: 400px;
+    width: 50%;
+  }
+
+  .search-section .search-doc {
+    display: grid;
+    justify-content: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+  }
+
+  .search-section .btn-search {
+    justify-content: center;
+    justify-self: center;
+    margin-left: 0;
+  }
+}
