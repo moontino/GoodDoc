@@ -1,11 +1,11 @@
 import { Header } from "./Header";
 import { Main } from "./Main";
 import { Description } from "./Description";
-import "./Home.css";
+import styles from "./Home.module.css";
 
 export const Home = () => {
   return (
-    <div className="home-layer">
+    <div className={styles["home-layer"]}>
       <Header />
       <Main />
       <Description />
