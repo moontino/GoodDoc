@@ -27,6 +27,8 @@ namespace GoodDoc_BackEnd.Data
 
         public DbSet<Question> Questions { get; set; }
 
+        public DbSet<Region> Regions { get; set; }
+
         public DbSet<Specialty> Specialties { get; set; }
 
         public DbSet<AppointmentSlot> Appointments { get; set; }

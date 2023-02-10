@@ -4,12 +4,21 @@ import { useState, useEffect } from "react";
 export const Main = () => {
   //Най-вероятно ще дойдат данните от Home/App
   const [specialty, setSpecialty] = useState([]);
+  const [region, setRegion] = useState([]);
 
   useEffect(() => {
-    fetch("https://localhost:7287/api/Search")
+    fetch("https://localhost:7287/api/search/specialty")
       .then((res) => res.json())
-      .then((result) => setSpecialty(result));
-  });
+      .then((result) => setSpecialty(result))
+      .catch((ex) => console.log(ex));
+  }, []);
+
+  useEffect(() => {
+    fetch("https://localhost:7287/api/search/region")
+      .then((res) => res.json())
+      .then((result) => setRegion(result))
+      .catch((ex) => console.log(ex));
+  }, []);
   ///* disabled */ при напискане на селект листа трябва да се сложах
   // line styles за да изчезне ИЗБАНАТА опция
   return (
@@ -28,10 +37,14 @@ export const Main = () => {
           ))}
         </select>
         <select className={`${styles.select} ${styles.place}`}>
-          <option disabled value="" hidden className={styles.placeholder}>
+          <option key="0" className={styles.option}>
             Избери населено място
           </option>
-          <option className={styles.option}>Something 2</option>
+          {region.map((x) => (
+            <option key={x.id} className={styles.option}>
+              {x.name}
+            </option>
+          ))}
         </select>
         <select className={`${styles.select} ${styles.name}`}>
           <option disabled value="" hidden className={styles.placeholder}>

@@ -5,6 +5,8 @@ namespace GoodDoc_BackEnd.Services.GetService
 {
     public interface IGetSearchService
     {
-        Task<List<SpecialtyViewModel>> GetSpecialtyAsync();
+        Task<IEnumerable<SpecialtyViewModel>> GetSpecialtyAsync();
+
+        Task<IEnumerable<RegionViewModel>> GetRegionAsync();
     }
 }

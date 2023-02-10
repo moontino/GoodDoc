@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using GoodDoc_BackEnd.Data;
-using GoodDoc_BackEnd.Models;
 using GoodDoc_BackEnd.ViewModels.SearchViewModels;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,23 +13,22 @@ namespace GoodDoc_BackEnd.Services.GetService
             _context = context;
         }
 
-        public async Task<List<SpecialtyViewModel>> GetSpecialtyAsync()
+        public async Task<IEnumerable<RegionViewModel>> GetRegionAsync()
         {
-
-            try
+            return await _context.Regions.Select(x => new RegionViewModel
             {
-                return await _context.Specialties.Select(x => new SpecialtyViewModel
-                {
-                    Name = x.Name,
-                    Id = x.Id,
-                }).ToListAsync();
-            }
-            catch (Exception ex)
+                Name = x.Name,
+                Id = x.Id,
+            }).ToListAsync();
+        }
+
+        public async Task<IEnumerable<SpecialtyViewModel>> GetSpecialtyAsync()
+        {
+            return await _context.Specialties.Select(x => new SpecialtyViewModel
             {
-                return null;
-            }
-
-
+                Name = x.Name,
+                Id = x.Id,
+            }).ToListAsync();
         }
     }
 }
